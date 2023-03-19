@@ -10,6 +10,7 @@ import com.example.better_puzzle_maker.BetterPuzzleMaker
 import com.example.better_puzzle_maker.listener.PuzzleListener
 import com.example.betterandcompany.R
 import com.example.betterandcompany.databinding.FragmentPuzzleGameBinding
+import com.example.betterandcompany.dialog.PuzzleResultDialogFragment
 import com.example.betterandcompany.viewmodel.MainViewModel
 
 class PuzzleGameFragment : BaseFragment<FragmentPuzzleGameBinding>(R.layout.fragment_puzzle_game) {
@@ -51,10 +52,14 @@ class PuzzleGameFragment : BaseFragment<FragmentPuzzleGameBinding>(R.layout.frag
         //퍼즐 메이커 리스너
         betterPuzzleMaker.setOnPuzzleListener(object : PuzzleListener {
             override fun onPuzzleCompleted() {
-                showToast("성공")
+                PuzzleResultDialogFragment.getInstance("성공 하였습니다\n축하드려요~!") {
+                    requireActivity().finish()
+                }.show(requireActivity().supportFragmentManager, "dialog")
             }
             override fun onPuzzleFailed() {
-                showToast("실패")
+                PuzzleResultDialogFragment.getInstance("실패 하였습니다.\n다음에 다시 도전 해보세요!") {
+                    requireActivity().finish()
+                }.show(requireActivity().supportFragmentManager, "dialog")
             }
         })
 
