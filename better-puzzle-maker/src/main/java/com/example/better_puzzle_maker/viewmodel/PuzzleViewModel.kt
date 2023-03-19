@@ -1,6 +1,7 @@
 package com.example.better_puzzle_maker.viewmodel
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,7 +44,6 @@ internal class PuzzleViewModel:ViewModel() {
     var pieceCount = 4
 
     var isPuzzleDataAlreadySet: Boolean = false
-
 
     fun setInitialPuzzleData(){
          isPuzzleDataAlreadySet = true

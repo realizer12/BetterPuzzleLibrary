@@ -7,6 +7,7 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewModelScope
 import com.example.better_puzzle_maker.adapter.PuzzleBoardTileRvAdapter
 import com.example.better_puzzle_maker.adapter.PuzzlePieceListRvAdapter
 import com.example.better_puzzle_maker.const.Const
@@ -75,7 +76,7 @@ class BetterPuzzleMaker private constructor(
         fun parentView(parentView: View) = apply { this.parentView = parentView }
 
 
-        fun setBitmap(puzzleImageBitmap: Bitmap) =
+        fun setBitmap(puzzleImageBitmap: Bitmap?) =
             apply { this.puzzleImageBitmap = puzzleImageBitmap }
 
         fun setPuzzlePieceCount(puzzlePieceCount: Int):Builder =

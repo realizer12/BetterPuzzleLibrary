@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">BetterAndCompany</string>
+    <string name="select_img_description">위 박스를 눌러 사진 하나를 선택해주세요.</string>
+    <string name="next">다음</string>
+    <string name="x">x</string>
+    <string name="grid_set_description">원하는 퍼즐 크기를 적어주세요\n(ex, 3을 적으면 3 * 3 퍼즐 완성)</string>
+    <string name="puzzle_description_title">퍼즐 조각</string>
+    <string name="puzzle_description">조각을 꾹 눌러서 위 퍼즐란에 넣고 뺄 수 있어요!</string>
+    <string name="pass">넘기기</string>
+    <string name="stop_watching">이 사진 그만 볼래요</string>
+    <string name="get_puzzle">퍼즐 풀기</string>
+    <string name="choose_img">이미지를 골라주세요!</string>
+    <string name="puzzle_game_start">퍼즐 게임 시작히기</string>
 </resources>

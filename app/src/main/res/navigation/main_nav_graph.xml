@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/imagePickFragment">
+    <fragment
+        android:id="@+id/imagePickFragment"
+        android:name="com.example.betterandcompany.fragment.ImagePickFragment"
+        android:label="ImagePickFragment"
+        tools:layout="@layout/fragment_img_pick" />
+
+    <fragment
+        android:id="@+id/setGridFragment"
+        android:name="com.example.betterandcompany.fragment.SetPuzzlePieceFragment"
+        android:label="SetGridFragment"
+        tools:layout="@layout/fragment_set_puzzle" />
+
+    <fragment
+        android:id="@+id/puzzleGameFragment"
+        android:name="com.example.betterandcompany.fragment.PuzzleGameFragment"
+        android:label="PuzzleGameFragment"
+        tools:layout="@layout/fragment_puzzle_game" />
+
+</navigation>

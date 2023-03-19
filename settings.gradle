@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "BetterAndCompany"
 include ':app'
+include ':better-puzzle-maker'
+include ':base'
