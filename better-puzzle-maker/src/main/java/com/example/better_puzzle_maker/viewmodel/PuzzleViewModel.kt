@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.better_puzzle_maker.const.Const
 import com.example.better_puzzle_maker.model.PuzzleBoardItemModel
 import com.example.better_puzzle_maker.model.PuzzlePieceItemModel
 import com.example.better_puzzle_maker.util.Event
@@ -17,9 +18,11 @@ internal class PuzzleViewModel:ViewModel() {
 
     //퍼즐 보드판 구성용 data list
     private val imagePuzzleBoardList = mutableListOf<PuzzleBoardItemModel>()
+    private val initialImagePuzzleBoardList = mutableListOf<PuzzleBoardItemModel>()
 
     //퍼즐 조각 목록 구성용 data list
     private val imagePuzzlePieceList = mutableListOf<PuzzlePieceItemModel>()
+    private val initialImagePuzzlePieceList = mutableListOf<PuzzlePieceItemModel>()
 
 
     //퍼즐 보드 데이터용 라이브 데이터
@@ -48,8 +51,21 @@ internal class PuzzleViewModel:ViewModel() {
     fun setInitialPuzzleData(){
          isPuzzleDataAlreadySet = true
 
+        //리스트 한번 섞어줌
+        imagePuzzlePieceList.shuffle()
+
         _imagePuzzleBoardListData.value = imagePuzzleBoardList
         _addImagePuzzleTileListData.value = imagePuzzlePieceList
+    }
+
+    fun refreshPuzzleData(){
+        imagePuzzleBoardList.clear()
+        imagePuzzleBoardList.addAll(initialImagePuzzleBoardList.map { it.copy() })
+
+        imagePuzzlePieceList.clear()
+        imagePuzzlePieceList.addAll(initialImagePuzzlePieceList.map { it.copy() })
+
+        setInitialPuzzleData()
     }
 
 
@@ -60,6 +76,7 @@ internal class PuzzleViewModel:ViewModel() {
         if(index > -1){
             imagePuzzlePieceList.add(index,puzzlePieceItemModel)
         }else{
+            initialImagePuzzlePieceList.add(puzzlePieceItemModel.copy())
             imagePuzzlePieceList.add(puzzlePieceItemModel)
         }
         if(!isInitialSet){//초기 세팅이 아니라면, upadate를 진행한다.
@@ -83,6 +100,7 @@ internal class PuzzleViewModel:ViewModel() {
     **/
     fun addPuzzleItemToBoardList(puzzleBoardItemModel: PuzzleBoardItemModel,isInitialSet:Boolean = false){
         imagePuzzleBoardList.add(puzzleBoardItemModel)
+        initialImagePuzzleBoardList.add(puzzleBoardItemModel.copy())
         if(!isInitialSet){//초기 세팅이 아니라면, upadate를 진행한다.
             _imagePuzzleBoardListData.value = imagePuzzleBoardList
         }

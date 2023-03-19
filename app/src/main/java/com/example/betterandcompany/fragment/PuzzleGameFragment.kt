@@ -34,13 +34,13 @@ class PuzzleGameFragment : BaseFragment<FragmentPuzzleGameBinding>(R.layout.frag
 
 
         //퍼즐 메이커 세팅
-        betterPuzzleMaker = BetterPuzzleMaker.Builder()
-            .activity(requireActivity())
-            .pieceRv(binding.puzzlePieceList)
-            .boardRv(binding.rvPuzzleBoard)
-            .parentView(binding.clParent)
-            .setBitmap(mainViewModel.selectedBitmap.value)
-            .setPuzzlePieceCount(mainViewModel.selectedPieceCount.value?:1)
+        betterPuzzleMaker = BetterPuzzleMaker.Builder(
+            activity = requireActivity(),
+            pieceRv = binding.puzzlePieceList,
+            boardRv = binding.rvPuzzleBoard,
+            parentView = binding.clParent
+        ).setBitmap(mainViewModel.selectedBitmap.value)
+            .setPuzzlePieceCount(mainViewModel.selectedPieceCount.value ?: 1)
             .build()
     }
 
@@ -57,6 +57,10 @@ class PuzzleGameFragment : BaseFragment<FragmentPuzzleGameBinding>(R.layout.frag
                 showToast("실패")
             }
         })
+
+        binding.ivRefresh.setOnClickListener {
+            betterPuzzleMaker.refreshPuzzle()
+        }
 
 
         //닫기 버튼 클릭시

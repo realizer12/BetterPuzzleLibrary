@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.view.DragEvent
 import android.view.View
+import androidx.core.view.children
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -63,19 +64,13 @@ class BetterPuzzleMaker private constructor(
 
 
     data class Builder(
-        private var activity: Activity? = null,
-        private var boardRv: PuzzleBoarView? = null,
-        private var pieceRv: PuzzlePieceListView? = null,
-        private var parentView: View? = null,
+        private var activity: Activity,
+        private var boardRv: PuzzleBoarView,
+        private var pieceRv: PuzzlePieceListView,
+        private var parentView: View,
         private var puzzleImageBitmap: Bitmap? = null,
         private var puzzlePieceCount: Int = 1
     ) {
-        fun activity(activity: Activity) = apply { this.activity = activity }
-        fun boardRv(boardRv: PuzzleBoarView) = apply { this.boardRv = boardRv }
-        fun pieceRv(pieceRv: PuzzlePieceListView) = apply { this.pieceRv = pieceRv }
-        fun parentView(parentView: View) = apply { this.parentView = parentView }
-
-
         fun setBitmap(puzzleImageBitmap: Bitmap?) =
             apply { this.puzzleImageBitmap = puzzleImageBitmap }
 
@@ -150,6 +145,12 @@ class BetterPuzzleMaker private constructor(
             adapter = imagePuzzleBoardListRvAdapter
         }
         boardRv.addItemDecoration(PuzzleBoardRvItemDecoration())
+    }
+
+
+    //퍼즐 refresh 한번 해줌.
+    fun refreshPuzzle(){
+        puzzleViewModel.refreshPuzzleData()
     }
 
     private fun getDataFromVm() {
